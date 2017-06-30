@@ -11,42 +11,65 @@ db = SQLAlchemy(app)
 class Blog(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120))
+    title = db.Column(db.String(120))
+    body = db.Column(db.String(1000))
 
-    def __init__(self, name):
+    def __init__(self, name, title, body):
         self.name = name
+        self.title = title
+        self.body = body
 
-@app.route('/')
+
+@app.route('/', methods=['POST', 'GET'])
 def index():
     return redirect('/blog')
 
-
 @app.route('/blog', methods=['POST', 'GET'])
-def blog():
-
-    if request.method == 'POST':
-        blog_name = request.form['blog']
-        new_blog = Blog(blog_name)
-        db.session.add(new_blog)
-        db.session.commit()
+def blogs():
+    return render_template('blog.html')
 
     blogs = Blog.query.all()
-    return render_template('blog.html',title="Build a Blog", 
+    
+
+@app.route('/newpost', methods=['POST', 'GET'])
+def newpost():
+    return render_template('newpost_form.html')
+
+    if request.method == 'POST':
+        blog_title = request.form['title']
+        blog_body = request.form['body']
+        new_blog = Blog(blog_title, blog_body)
+        db.session.add(new_blog)
+
+        db.session.commit()
+
+        return render_template('blog.html', title="Build a Blog", 
         blogs=blogs)
 
 
-@app.route('/newpost', methods=['POST','GET'])
-def newpost():
+@app.route('/validate-blog', methods =['POST', 'GET'])
+def entry_error():
+    title = request.form['title']
+    newpost = request.form['newpost']
 
-    if request.method == 'POST':
+    title_error = ''
+    blog_error = ''
 
-        blog_id = int(request.form['newpost'])
-        newpost = Blog.query.get(blog_id)
-        db.session.add(newpost)
-        db.session.commit()
+    newpost = str(newpost)
+    if len(newpost) == 0:
+        blog_error = "Please give your blog some content"
 
-    return render_template('newpost_form.html', title="Add a Blog Entry")
 
+    title = str(title)
+    if len(title) == 0:
+        title_error = "Please give your blog a title"
+
+    if not blog_error and not title_error:
+        return redirect('/blog')
+
+    else:
+        return render_template("newpost_form.html", title_error=title_error, blog_error=blog_error, 
+        title=title, newpost=newpost)
 
 
 if __name__ == '__main__':

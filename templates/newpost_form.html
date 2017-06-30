@@ -1,21 +1,41 @@
-{% extends "base.html" %}
-
-{% block content %}
+<!doctype html>
+<html>
+    <head>
+        <nav>
+            <a href="/blog">Main Blog Page</a> |
+            <a href="/newpost">Add a Blog Entry</a>
+        </nav>
+        <style>
+            .error {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
 
     <h1 align="center">Add a Blog Entry</h1>
-    <form method = 'post'>
-        <label>
-            New Post:
-            <div>
-            <textarea name='newpost' rows="10" cols="30">
-            </textarea>
-            </div>
+    <form action="{{ url_for('blogs') }}" method = 'post'>
+    <div>
+        <label>Title for your new blog:</div>
+    <div>
+            <input type="text" name='title'/>
+            <p class="error">{{title_error}}</p>
         </label>
-        <div>
-        <input type="submit" value='Post' />
-        </div>
+    </div>
+        <br>
+    </div>
+        <label>
+            Your new blog:
+    <div>
+            <textarea name='body'rows="10" cols="30">
+            </textarea>
+            <p class="error">{{blog_error}}</p>
+    </div>
+        </label>
+    <div>
+            <input type="submit" value='Post' />
+    </div>
+
     </form>
-
-
-
-{% endblock %}
+    </body>
+</html>
