@@ -6,19 +6,17 @@
             <a href="/newpost">Add a Blog Entry</a>
         </nav>
         <style>
-            .error {
-                color: red;
-            }
+            .error { color: red; }
         </style>
     </head>
     <body>
 
     <h1 align="center">Add a Blog Entry</h1>
-    <form action="{{ url_for('blogs') }}" method = 'post'>
+    <form action='/newpost' method = 'post'>
     <div>
         <label>Title for your new blog:</div>
     <div>
-            <input type="text" name='title'/>
+            <input type="text" name='title' value='{{title}}'/>
             <p class="error">{{title_error}}</p>
         </label>
     </div>
@@ -27,9 +25,9 @@
         <label>
             Your new blog:
     <div>
-            <textarea name='body'rows="10" cols="30">
+            <textarea name='body'rows="10" cols="30" value='{{body}}' >
             </textarea>
-            <p class="error">{{blog_error}}</p>
+            <p class="error">{{body_error}}</p>
     </div>
         </label>
     <div>

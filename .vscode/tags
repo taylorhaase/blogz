@@ -1,0 +1,23 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Blog	../main.py	/^class Blog(db.Model):$/;"	kind:class	line:11
+Flask	../main.py	/^from flask import Flask, request, redirect, render_template$/;"	kind:namespace	line:1
+SQLAlchemy	../main.py	/^from flask_sqlalchemy import SQLAlchemy$/;"	kind:namespace	line:2
+__init__	../main.py	/^    def __init__(self, name, title, body):$/;"	kind:member	line:17
+app	../main.py	/^app = Flask(__name__)$/;"	kind:variable	line:4
+blogs	../main.py	/^def blogs():$/;"	kind:function	line:28
+body	../main.py	/^    body = db.Column(db.String(1000))$/;"	kind:variable	line:15
+db	../main.py	/^db = SQLAlchemy(app)$/;"	kind:variable	line:8
+entry_error	../main.py	/^def entry_error():$/;"	kind:function	line:51
+id	../main.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:13
+index	../main.py	/^def index():$/;"	kind:function	line:24
+main.py	../main.py	1;"	kind:file	line:1
+newpost	../main.py	/^def newpost():$/;"	kind:function	line:35
+redirect	../main.py	/^from flask import Flask, request, redirect, render_template$/;"	kind:namespace	line:1
+render_template	../main.py	/^from flask import Flask, request, redirect, render_template$/;"	kind:namespace	line:1
+request	../main.py	/^from flask import Flask, request, redirect, render_template$/;"	kind:namespace	line:1
+title	../main.py	/^    title = db.Column(db.String(120))$/;"	kind:variable	line:14
