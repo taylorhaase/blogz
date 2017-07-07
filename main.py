@@ -30,7 +30,7 @@ def blogs():
     return render_template('blog.html',blogs=blogs)
     
 
-@app.route('/newpost', methods=['POST', 'GET'])    
+@app.route('/newpost', methods=['POST', 'GET'])
 def newpost():
 
     if request.method == 'POST':  
@@ -49,7 +49,6 @@ def newpost():
 
     else:
         return render_template('/newpost_form.html')
-
 
 
 if __name__ == '__main__':
