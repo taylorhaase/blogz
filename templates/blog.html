@@ -4,10 +4,11 @@
 
     <h1 align="center">Build a Blog</h1>
 
-        <ul>
+        <dl>
             {% for blog in blogs %}
-            <li><h2>{{blog.title}}</h2><br>{{blog.body}}</li>
+            <dt><h2>{{blog.title}}</h2></dt>
+            <dd>{{blog.body}}</dd>
             {% endfor %}
-        </ul>
+        </dl>
 
 {% endblock %}
