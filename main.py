@@ -43,9 +43,6 @@ def newpost():
 
         blog_title = str(blog_title.strip())
         blog_body = str(blog_body.strip())
-        print('-------')
-        print(len(blog_body.strip()))
-        print('**********')
 
         if len(blog_title) == 0:
             title_error = 'Please give your blog a title'
@@ -64,8 +61,6 @@ def newpost():
 
             blog_id = new_blog.id
 
-            print(blog_id)
-            #return redirect(url_for('blogs', id=blog_id))
             return redirect('/display?id=' + str(blog_id))
     else:
         return render_template('newpost_form.html')
@@ -74,8 +69,6 @@ def newpost():
 def display():
     blog_id = request.args.get('id')
     blog = Blog.query.filter(Blog.id == blog_id).first()
-    print('*******')
-    print(blog)
     
     return render_template('display_blog.html', blog_id=blog_id, 
         title=blog.title, body=blog.body)
