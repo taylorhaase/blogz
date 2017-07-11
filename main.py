@@ -41,9 +41,11 @@ def newpost():
         title_error = ''
         body_error = ''
 
-        blog_title = str(blog_title)
-        blog_body = str(blog_body)
-        print(blog_body)
+        blog_title = str(blog_title.strip())
+        blog_body = str(blog_body.strip())
+        print('-------')
+        print(len(blog_body.strip()))
+        print('**********')
 
         if len(blog_title) == 0:
             title_error = 'Please give your blog a title'
@@ -61,18 +63,22 @@ def newpost():
             db.session.commit()
 
             blog_id = new_blog.id
-           #return redirect(url_for('blogs', id=blog_id))
-            return redirect('/display?id={0}'.format(blog_id))
 
+            print(blog_id)
+            #return redirect(url_for('blogs', id=blog_id))
+            return redirect('/display?id=' + str(blog_id))
     else:
         return render_template('newpost_form.html')
 
 @app.route('/display', methods = ['POST', 'GET'])
 def display():
     blog_id = request.args.get('id')
-    title = request.args.get('title')
-    body = request.args.get('body')
-    return render_template('display_blog.html', blog_id=blog_id, title=title, body=body)
+    blog = Blog.query.filter(Blog.id == blog_id).first()
+    print('*******')
+    print(blog)
+    
+    return render_template('display_blog.html', blog_id=blog_id, 
+        title=blog.title, body=blog.body)
 
 
 if __name__ == '__main__':
