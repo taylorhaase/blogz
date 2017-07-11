@@ -14,13 +14,6 @@
         </style>
     </head>
 <body>
-    {% with messages = get_flashed_messages() %}
-        <ul>
-        {% for messages in messages %}
-            <li>{{messages}}</li>
-        {% endfor %}
-        </ul>
-    {% endwith %}
 
 
     {% block content %}

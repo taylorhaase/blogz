@@ -6,7 +6,7 @@
 
         <dl>
             {% for blog in blogs %}
-            <dt><h2>{{blog.title}}</h2></dt>
+            <dt><h2><a href='/display?id={0}'.format(blog_id)>{{blog.title}}</a></h2></dt>
             <dd>{{blog.body}}</dd>
             {% endfor %}
         </dl>
