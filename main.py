@@ -6,6 +6,7 @@ app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:hello123@localhost:8889/blogz'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
+app.secret_key = 'y337kGcys&zP3B'
 
 class Blog(db.Model):
 
@@ -29,10 +30,73 @@ class User(db.Model):
         self.username = username
         self.password = password
 
+@app.before_request
+def require_login():
+    allowed_routes = ['blogs', 'login', 'signup', 'index']
+    if request.endpoint not in allowed_routes and 'username' not in session:
+        return redirect('/login')
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username).first()
+
+
+        if user and user.password == password:
+            session['username'] = username
+            flash("Logged in")
+            return redirect('/newpost')
+        else:
+            flash('User password incorrect, or user does not exist', 'error')          
+
+    return render_template('login.html')
+
+@app.route('/signup', methods=['POST', 'GET'])
+def signup():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        verify = request.form['verify']
+     
+        existing_user = User.query.filter_by(username=username).first()
+        if not existing_user:
+            new_user = User(username, password)
+            db.session.add(new_user)
+            db.session.commit()
+            session['username'] = username
+            return redirect('/newpost')
+        else:
+            return "<h1>Username already exists</h1>"
+
+    return render_template('signup.html')
+
+
+@app.route('/logout')
+def logout():
+    del session['username']
+    return redirect('/blog')
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
     return redirect('/blog')
+
+#@app.route('/', methods=['POST', 'GET'])
+#def index():
+
+    #owner = User.query.filter_by(username=session['username']).first()
+
+    #if request.method == 'POST':
+        #task_name = request.form['task']
+        #new_owner = Task(task_name, owner)
+        #db.session.add(new_task)
+        #db.session.commit()
+
+    #tasks = Task.query.filter_by(completed=False,owner=owner).all()
+    #completed_tasks = Task.query.filter_by(completed=True,owner=owner).all()
+    #return render_template('todos.html',title="Get It Done!", 
+        #tasks=tasks, completed_tasks=completed_tasks)
 
 @app.route('/blog', methods=['POST', 'GET'])
 def blogs():
@@ -49,7 +113,7 @@ def newpost():
         blog_title = request.form['title']
         blog_body = request.form['body']
                 #added 'owner'
-        owner = request.form['owner']
+        owner = User.query.filter_by(username=session['username']).first()
 
         title_error = ''
         body_error = ''
@@ -85,7 +149,7 @@ def display():
     blog = Blog.query.filter(Blog.id == blog_id).first()
     
     return render_template('display_blog.html', blog_id=blog_id, 
-        title=blog.title, body=blog.body)
+        title=blog.title, body=blog.body, owner=blog.owner)
 
 
 if __name__ == '__main__':

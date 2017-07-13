@@ -3,8 +3,11 @@
     <head>
         <title>{{title}}</title>
         <nav>
+            <a href="/">Home</a> |
             <a href="/blog">Main Blog Page</a> |
-            <a href="/newpost">Add a Blog Entry</a>
+            <a href="/newpost">Add a Blog Entry</a> |
+            <a href="/login">Login</a> |
+            <a href="/logout">Logout</a> 
         </nav>
 
         <style>
@@ -14,6 +17,15 @@
         </style>
     </head>
 <body>
+
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        <ul>
+        {% for category,message in messages %}
+            <li class="{{category}}">{{message}}</li>
+        {% endfor %}
+        </ul>
+    {% endwith %}
 
 
     {% block content %}

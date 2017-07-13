@@ -4,30 +4,34 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-Blog	../main.py	/^class Blog(db.Model):$/;"	kind:class	line:10
+Blog	../main.py	/^class Blog(db.Model):$/;"	kind:class	line:11
 Flask	../main.py	/^from flask import Flask, request, redirect, render_template, url_for, session, flash$/;"	kind:namespace	line:1
 SQLAlchemy	../main.py	/^from flask_sqlalchemy import SQLAlchemy$/;"	kind:namespace	line:2
-User	../main.py	/^class User(db.Model):$/;"	kind:class	line:22
-__init__	../main.py	/^    def __init__(self, title, body, owner):$/;"	kind:member	line:17
-__init__	../main.py	/^    def __init__(self, username, password):$/;"	kind:member	line:28
+User	../main.py	/^class User(db.Model):$/;"	kind:class	line:23
+__init__	../main.py	/^    def __init__(self, title, body, owner):$/;"	kind:member	line:18
+__init__	../main.py	/^    def __init__(self, username, password):$/;"	kind:member	line:29
 app	../main.py	/^app = Flask(__name__)$/;"	kind:variable	line:4
-blogs	../main.py	/^    blogs = db.relationship('Blog', backref='owner')$/;"	kind:variable	line:26
-blogs	../main.py	/^def blogs():$/;"	kind:function	line:38
-body	../main.py	/^    body = db.Column(db.String(1000))$/;"	kind:variable	line:14
+blogs	../main.py	/^    blogs = db.relationship('Blog', backref='owner')$/;"	kind:variable	line:27
+blogs	../main.py	/^def blogs():$/;"	kind:function	line:103
+body	../main.py	/^    body = db.Column(db.String(1000))$/;"	kind:variable	line:15
 db	../main.py	/^db = SQLAlchemy(app)$/;"	kind:variable	line:8
-display	../main.py	/^def display():$/;"	kind:function	line:83
+display	../main.py	/^def display():$/;"	kind:function	line:148
 flash	../main.py	/^from flask import Flask, request, redirect, render_template, url_for, session, flash$/;"	kind:namespace	line:1
-id	../main.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:12
-id	../main.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:23
-index	../main.py	/^def index():$/;"	kind:function	line:34
+id	../main.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:13
+id	../main.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:24
+index	../main.py	/^def index():$/;"	kind:function	line:83
+login	../main.py	/^def login():$/;"	kind:function	line:40
+logout	../main.py	/^def logout():$/;"	kind:function	line:78
 main.py	../main.py	1;"	kind:file	line:1
-newpost	../main.py	/^def newpost():$/;"	kind:function	line:46
-owner_id	../main.py	/^    owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))$/;"	kind:variable	line:15
-password	../main.py	/^    password = db.Column(db.String(20))$/;"	kind:variable	line:25
+newpost	../main.py	/^def newpost():$/;"	kind:function	line:111
+owner_id	../main.py	/^    owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))$/;"	kind:variable	line:16
+password	../main.py	/^    password = db.Column(db.String(20))$/;"	kind:variable	line:26
 redirect	../main.py	/^from flask import Flask, request, redirect, render_template, url_for, session, flash$/;"	kind:namespace	line:1
 render_template	../main.py	/^from flask import Flask, request, redirect, render_template, url_for, session, flash$/;"	kind:namespace	line:1
 request	../main.py	/^from flask import Flask, request, redirect, render_template, url_for, session, flash$/;"	kind:namespace	line:1
+require_login	../main.py	/^def require_login():$/;"	kind:function	line:34
 session	../main.py	/^from flask import Flask, request, redirect, render_template, url_for, session, flash$/;"	kind:namespace	line:1
-title	../main.py	/^    title = db.Column(db.String(120))$/;"	kind:variable	line:13
+signup	../main.py	/^def signup():$/;"	kind:function	line:58
+title	../main.py	/^    title = db.Column(db.String(120))$/;"	kind:variable	line:14
 url_for	../main.py	/^from flask import Flask, request, redirect, render_template, url_for, session, flash$/;"	kind:namespace	line:1
-username	../main.py	/^    username = db.Column(db.String(20))$/;"	kind:variable	line:24
+username	../main.py	/^    username = db.Column(db.String(20))$/;"	kind:variable	line:25
