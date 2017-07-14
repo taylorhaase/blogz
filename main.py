@@ -84,22 +84,6 @@ def index():
     
     return render_template('index.html', owners=owners)
 
-#@app.route('/', methods=['POST', 'GET'])
-#def index():
-
-    #owner = User.query.filter_by(username=session['username']).first()
-
-    #if request.method == 'POST':
-        #task_name = request.form['task']
-        #new_owner = Task(task_name, owner)
-        #db.session.add(new_task)
-        #db.session.commit()
-
-    #tasks = Task.query.filter_by(completed=False,owner=owner).all()
-    #completed_tasks = Task.query.filter_by(completed=True,owner=owner).all()
-    #return render_template('todos.html',title="Get It Done!", 
-        #tasks=tasks, completed_tasks=completed_tasks)
-
 @app.route('/blog', methods=['POST', 'GET'])
 def blogs():
     
@@ -114,7 +98,7 @@ def newpost():
 
         blog_title = request.form['title']
         blog_body = request.form['body']
-                #added 'owner'
+    
         owner = User.query.filter_by(username=session['username']).first()
 
         title_error = ''
@@ -134,7 +118,6 @@ def newpost():
                 blog_title=blog_title)
         
         else:
-                                #added owner to new_blog
             new_blog = Blog(blog_title, blog_body, owner)
             db.session.add(new_blog)
             db.session.commit()
@@ -159,7 +142,7 @@ def userblogs():
     user_id = request.args.get('id')
     user = User.query.filter_by(id=user_id).first()
     #blogs = Blog.query.filter(Blog.owner_id == user).all()
-    #owner = User.query.filter_by(username=session['username']).first()
+    
     return render_template('singleUser.html', user=user)
 
 
