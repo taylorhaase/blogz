@@ -6,9 +6,8 @@
 
         <dl>
             {% for blog in blogs %}
-            <dt><h2><a href='/display?id={{blog.id}}'id="links"name ='links'>{{ blog.title }}</a></h2></dt>
+            <dt><h2><a href='/display?id={{blog.id}}' id="links" name ='links'>{{ blog.title }}</a></h2></dt>
             <dd>{{blog.body}}</dd>
-            <dd>{{blog.owner}}</dd>
             {% endfor %}
         </dl>
 

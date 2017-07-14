@@ -80,7 +80,9 @@ def logout():
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    return redirect('/blog')
+    owners = User.query.all()
+    
+    return render_template('index.html', owners=owners)
 
 #@app.route('/', methods=['POST', 'GET'])
 #def index():
@@ -150,6 +152,15 @@ def display():
     
     return render_template('display_blog.html', blog_id=blog_id, 
         title=blog.title, body=blog.body, owner=blog.owner)
+
+@app.route('/userblogs', methods=['POST', 'GET'])
+def userblogs():
+    
+    user_id = request.args.get('id')
+    user = User.query.filter_by(id=user_id).first()
+    #blogs = Blog.query.filter(Blog.owner_id == user).all()
+    #owner = User.query.filter_by(username=session['username']).first()
+    return render_template('singleUser.html', user=user)
 
 
 if __name__ == '__main__':

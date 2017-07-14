@@ -2,12 +2,13 @@
 
 {% block content %}
 
-    <h1 align="center">Blog Users!</h1>
+    <h1>blog users:</h1>
 
-        <dl>
-            {% for user in users %}
-            <dt><h2><a href='/?user={{owner.id}}'id="links"name ='links'><em>{{ user.username }}</em></a></h2></dt>
+        <ul>
+            {% for owner in owners %}
+            <li><a href='/userblogs?id={{owner.id}}' id="links" name ='links'>{{ owner.username }}</a></li>
             {% endfor %}
-        </dl>
+        </ul>
+
 
 {% endblock %}

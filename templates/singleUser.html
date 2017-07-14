@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>blog posts:</h1>
+
+    <dl>
+        {% for blog in user.blogs %}
+        <dt><a href='/display?id={{blog.id}}' id="links" name ='links'>{{ blog.title }}</a></dt>
+        <dd>{{blog.body}}</dd>
+
+        {% endfor %}
+    </dl>
+
+{% endblock %}
