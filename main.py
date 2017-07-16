@@ -42,14 +42,26 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
+        
+        username = str(username)
+        password = str(password)
 
-
-        if user and user.password == password:
-            session['username'] = username
-            flash("Logged in")
-            return redirect('/newpost')
+        if len(username) < 3:
+            username_error = "Not a valid username"
+            return render_template('login.html', username_error=username_error)
+        
+        if len(password) < 3:
+            password_error = "Not a valid password"
+            return render_template('login.html', password_error=password_error,
+                username=username)
         else:
-            flash('User password incorrect, or user does not exist', 'error')          
+
+            if user and user.password == password:
+                session['username'] = username
+                flash("Logged in")
+                return redirect('/newpost')
+            else:
+                flash('User password incorrect, or user does not exist', 'error')          
 
     return render_template('login.html')
 
@@ -59,16 +71,33 @@ def signup():
         username = request.form['username']
         password = request.form['password']
         verify = request.form['verify']
-     
-        existing_user = User.query.filter_by(username=username).first()
-        if not existing_user:
-            new_user = User(username, password)
-            db.session.add(new_user)
-            db.session.commit()
-            session['username'] = username
-            return redirect('/newpost')
+
+        username = str(username)
+        password = str(password)
+        verify = str(verify)
+
+        if len(username) < 3:
+            username_error = "Username must be at least 3 characters"
+            return render_template('signup.html', username_error=username_error)
+        if len(password) <3:
+            password_error = "Password must be at least 3 characters"
+            return render_template('signup.html', password_error=password_error, 
+                username=username)
+        if password != verify:
+            verify_error = "Passwords do not match"
+            return render_template('signup.html', verify_error=verify_error, 
+                username=username)
         else:
-            return "<h1>Username already exists</h1>"
+     
+            existing_user = User.query.filter_by(username=username).first()
+            if not existing_user:
+                new_user = User(username, password)
+                db.session.add(new_user)
+                db.session.commit()
+                session['username'] = username
+                return redirect('/newpost')
+            else:
+                return "<h1>Username already exists</h1>"
 
     return render_template('signup.html')
 
@@ -89,7 +118,11 @@ def blogs():
     
     blogs = Blog.query.all()
     blog_id = request.args.get('id')
-    return render_template('blog.html',blogs=blogs, id=blog_id)
+
+    user_id = request.args.get('id')
+    owner = User.query.filter_by(id=user_id).first()
+
+    return render_template('blog.html',blogs=blogs, id=blog_id, owner=owner)
     
 
 @app.route('/newpost', methods=['POST', 'GET'])
@@ -141,9 +174,9 @@ def userblogs():
     
     user_id = request.args.get('id')
     user = User.query.filter_by(id=user_id).first()
-    #blogs = Blog.query.filter(Blog.owner_id == user).all()
+    owner = User.query.filter_by(id=user_id).first()
     
-    return render_template('singleUser.html', user=user)
+    return render_template('singleUser.html', user=user, owner=owner)
 
 
 if __name__ == '__main__':
