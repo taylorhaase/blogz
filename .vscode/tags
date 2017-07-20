@@ -12,18 +12,18 @@ __init__	../main.py	/^    def __init__(self, title, body, owner):$/;"	kind:membe
 __init__	../main.py	/^    def __init__(self, username, password):$/;"	kind:member	line:29
 app	../main.py	/^app = Flask(__name__)$/;"	kind:variable	line:4
 blogs	../main.py	/^    blogs = db.relationship('Blog', backref='owner')$/;"	kind:variable	line:27
-blogs	../main.py	/^def blogs():$/;"	kind:function	line:88
+blogs	../main.py	/^def blogs():$/;"	kind:function	line:117
 body	../main.py	/^    body = db.Column(db.String(1000))$/;"	kind:variable	line:15
 db	../main.py	/^db = SQLAlchemy(app)$/;"	kind:variable	line:8
-display	../main.py	/^def display():$/;"	kind:function	line:132
+display	../main.py	/^def display():$/;"	kind:function	line:165
 flash	../main.py	/^from flask import Flask, request, redirect, render_template, url_for, session, flash$/;"	kind:namespace	line:1
 id	../main.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:13
 id	../main.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:24
-index	../main.py	/^def index():$/;"	kind:function	line:82
+index	../main.py	/^def index():$/;"	kind:function	line:111
 login	../main.py	/^def login():$/;"	kind:function	line:40
-logout	../main.py	/^def logout():$/;"	kind:function	line:77
+logout	../main.py	/^def logout():$/;"	kind:function	line:106
 main.py	../main.py	1;"	kind:file	line:1
-newpost	../main.py	/^def newpost():$/;"	kind:function	line:96
+newpost	../main.py	/^def newpost():$/;"	kind:function	line:129
 owner_id	../main.py	/^    owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))$/;"	kind:variable	line:16
 password	../main.py	/^    password = db.Column(db.String(20))$/;"	kind:variable	line:26
 redirect	../main.py	/^from flask import Flask, request, redirect, render_template, url_for, session, flash$/;"	kind:namespace	line:1
@@ -31,8 +31,8 @@ render_template	../main.py	/^from flask import Flask, request, redirect, render_
 request	../main.py	/^from flask import Flask, request, redirect, render_template, url_for, session, flash$/;"	kind:namespace	line:1
 require_login	../main.py	/^def require_login():$/;"	kind:function	line:34
 session	../main.py	/^from flask import Flask, request, redirect, render_template, url_for, session, flash$/;"	kind:namespace	line:1
-signup	../main.py	/^def signup():$/;"	kind:function	line:57
+signup	../main.py	/^def signup():$/;"	kind:function	line:69
 title	../main.py	/^    title = db.Column(db.String(120))$/;"	kind:variable	line:14
 url_for	../main.py	/^from flask import Flask, request, redirect, render_template, url_for, session, flash$/;"	kind:namespace	line:1
-userblogs	../main.py	/^def userblogs():$/;"	kind:function	line:140
+userblogs	../main.py	/^def userblogs():$/;"	kind:function	line:173
 username	../main.py	/^    username = db.Column(db.String(20))$/;"	kind:variable	line:25
