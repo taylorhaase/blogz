@@ -118,13 +118,8 @@ def blogs():
     
     blogs = Blog.query.all()
     blog_id = request.args.get('id')
-
-    user_id = request.args.get('id')
-    owner = User.query.filter_by(id=user_id).first()
-
-
-    return render_template('blog.html', blogs=blogs, id=blog_id, owner=owner)
     
+    return render_template('blog.html', blogs=blogs, id=blog_id)
 
 @app.route('/newpost', methods=['POST', 'GET'])
 def newpost():
